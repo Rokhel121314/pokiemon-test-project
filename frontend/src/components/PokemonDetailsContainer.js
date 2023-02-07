@@ -43,7 +43,11 @@ function PokemonDetailsContainer({
                   </span>
                   <div className="pokemonType">
                     {pokemonData.types?.map((type) => {
-                      return <span>{type.type.name.toUpperCase()}</span>;
+                      return (
+                        <span key={type.type.name}>
+                          {type.type.name.toUpperCase()}
+                        </span>
+                      );
                     })}
                   </div>
                 </div>

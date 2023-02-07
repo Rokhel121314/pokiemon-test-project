@@ -4,6 +4,7 @@ import PokemonDetailsContainer from "./PokemonDetailsContainer";
 import PokemonGrid from "./PokemonGrid";
 import PokemonSearch from "./PokemonSearch";
 import PokemonSort from "./PokemonSort";
+import PokemonList from "./PokemonList";
 
 function PokemonListContainer(props) {
   const {
@@ -13,8 +14,12 @@ function PokemonListContainer(props) {
     goPrevious,
     handleSearch,
     searchInput,
+    handleSelect,
+    setViewOption,
+    isGrid,
+    view,
   } = props;
-  const [pokemonData, setPokemonData] = useState();
+  const [pokemonData, setPokemonData] = useState("");
   const [searchData, setSearchData] = useState([]);
   console.log("pokemonData", pokemonData);
 
@@ -39,26 +44,35 @@ function PokemonListContainer(props) {
         {/* SEARCH AND FILTERS */}
         <div className="header col-12">
           <div className="utils">
-            <PokemonSort />
+            <PokemonSort handleSelect={handleSelect} />
+            <button onClick={setViewOption} className="viewBtn">
+              {view}
+            </button>
           </div>
 
           {/* NAVIGATION BUTTONS */}
           <div className="btn">
             <button onClick={goPrevious} id="prevBtn" className="navBtn">
-              PREVIOUS
+              {`< PREVIOUS`}
             </button>
             <button onClick={goNext} className="navBtn">
-              NEXT
+              {`NEXT >`}
             </button>
           </div>
         </div>
-        <div className="pokemonList col-12">
+        {isGrid ? (
           <PokemonGrid
             pokemonList={pokemonList}
             isLoading={isLoading}
             pokemonDetail={pokemonDetail}
           />
-        </div>
+        ) : (
+          <PokemonList
+            pokemonList={pokemonList}
+            isLoading={isLoading}
+            pokemonDetail={pokemonDetail}
+          />
+        )}
       </div>
       <PokemonDetailsContainer
         pokemonData={pokemonData}

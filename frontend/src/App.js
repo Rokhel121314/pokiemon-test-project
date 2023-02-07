@@ -13,12 +13,16 @@ function App() {
   const [nextPokemonSet, setNextPokemonSet] = useState();
   const [prevPokemonSet, setPrevPokemonSet] = useState();
   const [searchInput, setSearchInput] = useState("");
-  // const [searchData, setSearchData] = useState([]);
+  const [selectValue, setSelectValue] = useState(0);
+  const [isGrid, setIsGrid] = useState(true);
+  const [view, setView] = useState("GRID VIEW");
 
   // console.log("next", nextPokemonSet);
   // console.log("prev", prevPokemonSet);
-  console.log("searchInput", searchInput);
-  console.log("pokemonList", pokemonList);
+  // console.log("searchInput", searchInput);
+  // console.log("pokemonList", pokemonList);
+  // console.log("selectValue", selectValue);
+  // console.log("grid?", isGrid);
 
   const pokeGet = async () => {
     try {
@@ -28,7 +32,6 @@ function App() {
       setPrevPokemonSet(res.data.previous);
       getPokemonList(res.data.results);
       setIsLoading(false);
-      // console.log("pokemonList", pokemonList);
     } catch (error) {
       console.log(error);
     }
@@ -52,13 +55,6 @@ function App() {
 
   useEffect(() => {
     pokeGet();
-    // if (prevPokemonSet === null) {
-    //   const prevBtn = document.querySelector("#prevBtn");
-    //   prevBtn.setAttribute("disabled", true);
-    // } else {
-    //   const prevBtn = document.querySelector("#prevBtn");
-    //   prevBtn.removeAttribute("disabled", true);
-    // }
   }, [pokemonSet]);
 
   function goNext() {
@@ -79,6 +75,28 @@ function App() {
     setSearchInput(e.target.value.toLowerCase());
   }
 
+  function handleSelect(e) {
+    setSelectValue(e.target.value);
+  }
+
+  useEffect(() => {
+    if (selectValue === "1") {
+      setPokemonList([...pokemonList].sort((a, b) => (a.id > b.id ? -1 : 1)));
+    } else if (selectValue === "0") {
+      setPokemonList([...pokemonList].sort((a, b) => (a.id > b.id ? 1 : -1)));
+    }
+  }, [selectValue]);
+
+  function setViewOption() {
+    if (isGrid === true) {
+      setIsGrid(false);
+      setView("LIST VIEW");
+    } else {
+      setIsGrid(true);
+      setView("GRID VIEW");
+    }
+  }
+
   return (
     <>
       <PokemonListContainer
@@ -88,8 +106,10 @@ function App() {
         goPrevious={goPrevious}
         handleSearch={handleSearch}
         searchInput={searchInput}
-        // getPokemonSearch={getPokemonSearch}
-        // searchData={searchData}
+        handleSelect={handleSelect}
+        setViewOption={setViewOption}
+        isGrid={isGrid}
+        view={view}
       />
     </>
   );

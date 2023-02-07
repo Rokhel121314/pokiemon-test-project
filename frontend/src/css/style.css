@@ -82,13 +82,33 @@ body {
 
 .navBtn {
   cursor: pointer;
+  width: 120px;
+  height: 35px;
+  border-radius: 17px;
 }
 
-.sortInput {
-  margin-right: 20px;
+.pokeSort {
+  width: 120px;
+  height: 30px;
+  border-radius: 15px;
+  text-align: center;
 }
 
-.pokemonList {
+.pokeSort:hover {
+  cursor: pointer;
+}
+
+.viewBtn {
+  width: 120px;
+  height: 35px;
+  border-radius: 17px;
+}
+
+.viewBtn:hover {
+  cursor: pointer;
+}
+
+.pokemonGridView {
   height: 85vh;
   width: 100%;
   /* background-color: rgb(179, 131, 36); */
@@ -102,8 +122,9 @@ body {
   height: 125px;
   width: calc(90% / 5);
   border-radius: 5px;
-  color: black;
-  background-color: white;
+  color: white;
+  border: 1px solid white;
+  background: none;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -128,12 +149,39 @@ body {
 .pokeName {
   width: 100%;
   text-align: center;
-  /* position: absolute;
-  top: 100px;
-  left: 33%; */
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
 }
+
+.pokemonListView {
+  overflow-y: auto;
+  height: 80vh;
+  text-align: center;
+}
+
+.pokemonListBtn {
+  display: flex;
+  align-items: center;
+  height: 14vh;
+  background: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 10px;
+
+  margin: 0.5rem auto;
+}
+
+.pokemonListBtn:hover {
+  cursor: pointer;
+}
+
+.searchInput {
+  height: 25px;
+  border: 1px solid white;
+  border-radius: 12.5px;
+  background: none;
+}
+
 /* POKEMONDETAILCONTAINER */
 
 .pokemonDetailsContainer {
@@ -150,6 +198,8 @@ body {
 
 .pokeDetailContainer {
   height: 55vh;
+  /* border: 1px solid white; */
+  /* border-radius: 10px; */
 }
 
 .pokemonDetail1 {
@@ -179,6 +229,7 @@ body {
   width: 100%;
   text-align: center;
   margin-bottom: 1rem;
+  font-size: 2rem;
 }
 
 .pokemonType span {
@@ -230,11 +281,19 @@ body {
 .ability {
   border: 1px solid white;
   border-radius: 5px;
-  padding: 0 5px;
+  padding: 6px 5px 2px 5px;
   height: 20px;
   margin-bottom: 5px;
 }
 
 .searchContainer {
   text-align: center;
+}
+
+.searchBtn {
+  height: 30px;
+  border-radius: 15px;
+}
+.searchBtn:hover {
+  cursor: pointer;
 }

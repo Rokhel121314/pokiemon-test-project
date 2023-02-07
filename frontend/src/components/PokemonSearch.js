@@ -13,7 +13,12 @@ function PokemonSearch({ handleSearch, getPokemonSearch }) {
           className="searchInput col-5"
           onChange={handleSearch}
         />
-        <button type="button" name="searchBtn" onClick={getPokemonSearch}>
+        <button
+          type="button"
+          name="searchBtn"
+          onClick={getPokemonSearch}
+          className="searchBtn"
+        >
           SEARCH
         </button>
       </form>
