@@ -52,7 +52,7 @@ body {
 .pokemonListContainer {
   min-height: 100vh;
   /* background-color: aqua; */
-  float: left;
+  float: right;
 }
 
 .utilityContainer {
@@ -180,6 +180,8 @@ body {
   border: 1px solid white;
   border-radius: 12.5px;
   background: none;
+  color: white;
+  text-align: center;
 }
 
 /* POKEMONDETAILCONTAINER */
@@ -191,15 +193,17 @@ body {
 }
 
 .detailContainer {
-  height: 50vh;
+  height: 95vh;
   color: white;
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .pokeDetailContainer {
-  height: 55vh;
-  /* border: 1px solid white; */
-  /* border-radius: 10px; */
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .pokemonDetail1 {
@@ -208,11 +212,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .pokemonDetail1 img {
-  width: 90%;
+  width: 80%;
 }
 
 .name-type {
@@ -228,7 +232,7 @@ body {
 .pokemonName {
   width: 100%;
   text-align: center;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   font-size: 2rem;
 }
 
@@ -241,7 +245,7 @@ body {
 
 .pokemonDetail2 {
   color: white;
-  height: 50vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -265,9 +269,10 @@ body {
 .skillsContainer {
   /* height: 20vh; */
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
+  /* margin-top: 20px; */
 }
 
 .statsName {
@@ -281,13 +286,42 @@ body {
 .ability {
   border: 1px solid white;
   border-radius: 5px;
-  padding: 6px 5px 2px 5px;
-  height: 20px;
-  margin-bottom: 5px;
+  padding: 2px 2px 2px 2px;
+  margin-bottom: 2px;
+  margin: 0 5px;
+  font-size: 0.8rem;
 }
 
+.addtoTeamFavoriteContainer {
+  display: flex;
+  justify-content: space-around;
+}
+.addtoFavoriteBtn {
+  width: 100px;
+  height: 25px;
+  border-radius: 12.5px;
+}
+.addtoFavoriteBtn:hover {
+  cursor: pointer;
+}
+
+.addtoTeamBtn {
+  width: 100px;
+  height: 25px;
+  border-radius: 12.5px;
+}
 .searchContainer {
   text-align: center;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  top: 4vh;
+}
+
+.formContainer {
+  display: flex;
+  justify-content: center;
 }
 
 .searchBtn {
@@ -296,4 +330,47 @@ body {
 }
 .searchBtn:hover {
   cursor: pointer;
+}
+
+.trainerContainer {
+  height: 100vh;
+  float: left;
+  background-color: rgb(50, 51, 51);
+}
+.trainerName {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.pokemonTeamContainer {
+  height: 40vh;
+}
+
+.teamTitle {
+  height: 5vh;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+  text-align: start !important;
+}
+.favoritePokemonContainer {
+  height: 50vh;
+}
+
+.pokemonContainer {
+  display: flex;
+  align-items: center;
+}
+
+.pokemonContainer:hover {
+  cursor: pointer;
+}
+
+.faveListContainer {
+  height: 45vh;
+  overflow-y: auto;
+}
+.faveListContainer > div > img {
+  height: 50px;
 }

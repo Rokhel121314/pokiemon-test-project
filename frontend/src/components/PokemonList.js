@@ -1,6 +1,11 @@
 import React from "react";
 
-function PokemonList({ pokemonList, isLoading, pokemonDetail }) {
+function PokemonList({
+  pokemonList,
+  isLoading,
+  pokemonDetail,
+  getFavoritePokemon,
+}) {
   return (
     <div>
       <>
@@ -14,6 +19,7 @@ function PokemonList({ pokemonList, isLoading, pokemonDetail }) {
                   className="pokemonListBtn col-11"
                   key={pokemon.id}
                   onClick={() => {
+                    getFavoritePokemon(pokemon.name);
                     pokemonDetail(pokemon);
                   }}
                 >

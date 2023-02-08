@@ -1,4 +1,5 @@
-import React from "react";
+import Axios from "axios";
+import React, { useState } from "react";
 import PokemonSearch from "./PokemonSearch";
 
 function PokemonDetailsContainer({
@@ -6,8 +7,12 @@ function PokemonDetailsContainer({
   searchData,
   handleSearch,
   getPokemonSearch,
+  pokemonURL,
+  getFavoritePokemon,
+  addFavoritePokemon,
 }) {
   // console.log("pokemonData", pokemonData);
+  // console.log("pokemonURL", pokemonURL);
 
   const abilities = !pokemonData
     ? ""
@@ -29,13 +34,13 @@ function PokemonDetailsContainer({
 
   return (
     <>
-      <div className="pokemonDetailsContainer col-6">
+      <div className="pokemonDetailsContainer col-3">
         <div className="pokeDetailContainer col-12">
           {!pokemonData ? (
             ""
           ) : (
-            <div className="detailContainer">
-              <div className="pokemonDetail1 col-6">
+            <div className="detailContainer" key={pokemonData.id}>
+              <div className="pokemonDetail1 col-12">
                 <img src={pokemonData.sprites.front_default} />
                 <div className="name-type">
                   <span className="pokemonName">
@@ -54,9 +59,9 @@ function PokemonDetailsContainer({
                 {/* <button>ADD TO TEAM</button>
                 <button>ADD TO FAVORITE</button> */}
               </div>
-              <div className="pokemonDetail2 col-6">
+              <div className="pokemonDetail2 col-12">
                 <div className="statsHeader row">POKEMON STATS & SKILLS</div>
-                <div className="statsContainer row">
+                <div className="statsContainer col-10">
                   <div className="statsName col-8">
                     {statsName?.map((stats) => {
                       return <div>{stats.toUpperCase()}:</div>;
@@ -71,17 +76,24 @@ function PokemonDetailsContainer({
                 <div className="skillsContainer row">
                   {abilities.map((ability) => {
                     return (
-                      <div className="ability col-10">
-                        {ability.toUpperCase()}
-                      </div>
+                      <div className="ability">{ability.toUpperCase()}</div>
                     );
                   })}
                 </div>
               </div>
+              <div className="addtoTeamFavoriteContainer">
+                <button
+                  type="submit"
+                  className="addtoFavoriteBtn"
+                  onClick={addFavoritePokemon}
+                >
+                  + FAVORITE
+                </button>
+                <button className="addtoTeamBtn"> + TEAM</button>
+              </div>
             </div>
           )}
         </div>
-
         <PokemonSearch
           handleSearch={handleSearch}
           getPokemonSearch={getPokemonSearch}

@@ -1,6 +1,12 @@
 import React from "react";
 
-function PokemonGrid({ pokemonList, isLoading, pokemonDetail }) {
+function PokemonGrid({
+  pokemonList,
+  isLoading,
+  pokemonDetail,
+  getFavoritePokemon,
+  urlData,
+}) {
   //   console.log("pokemonList", pokemonList);
   return (
     <>
@@ -14,7 +20,9 @@ function PokemonGrid({ pokemonList, isLoading, pokemonDetail }) {
                 className="pokemonGrid"
                 key={pokemon.id}
                 onClick={() => {
+                  getFavoritePokemon(pokemon.name);
                   pokemonDetail(pokemon);
+                  console.log("pokemon", pokemon.name);
                 }}
               >
                 <div className="pokeId">{pokemon.id}</div>

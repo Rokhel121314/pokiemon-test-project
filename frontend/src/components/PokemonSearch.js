@@ -4,8 +4,8 @@ function PokemonSearch({ handleSearch, getPokemonSearch }) {
   // console.log("pokemonList", pokemonList);
 
   return (
-    <div className="searchContainer row">
-      <form>
+    <div className="searchContainer col-12">
+      <form className="formContainer row">
         <input
           type="text"
           name="pokemonName"
@@ -17,7 +17,7 @@ function PokemonSearch({ handleSearch, getPokemonSearch }) {
           type="button"
           name="searchBtn"
           onClick={getPokemonSearch}
-          className="searchBtn"
+          className="searchBtn col-5"
         >
           SEARCH
         </button>

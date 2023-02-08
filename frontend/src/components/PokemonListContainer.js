@@ -5,6 +5,7 @@ import PokemonGrid from "./PokemonGrid";
 import PokemonSearch from "./PokemonSearch";
 import PokemonSort from "./PokemonSort";
 import PokemonList from "./PokemonList";
+import Trainer from "./Trainer";
 
 function PokemonListContainer(props) {
   const {
@@ -18,25 +19,20 @@ function PokemonListContainer(props) {
     setViewOption,
     isGrid,
     view,
+    pokemonData,
+    pokemonDetail,
+    getPokemonSearch,
+    urlData,
+    getFavoritePokemon,
+    addFavoritePokemon,
+    favoritePokemonList,
+    setFavePokemon,
+    favePokemon,
+    getFavPokemonList,
   } = props;
-  const [pokemonData, setPokemonData] = useState("");
+
   const [searchData, setSearchData] = useState([]);
-  console.log("pokemonData", pokemonData);
-
-  function pokemonDetail(pokemon) {
-    setPokemonData(pokemon);
-  }
-
-  const getPokemonSearch = () => {
-    Axios.get(`https://pokeapi.co/api/v2/pokemon/${searchInput}`).then(
-      (response) =>
-        // console.log("response", response.data);
-
-        !response.data ? "" : setPokemonData(response.data)
-    );
-  };
-
-  useEffect(() => {}, []);
+  //   console.log("pokemonData", pokemonData);
 
   return (
     <>
@@ -65,20 +61,36 @@ function PokemonListContainer(props) {
             pokemonList={pokemonList}
             isLoading={isLoading}
             pokemonDetail={pokemonDetail}
+            getFavoritePokemon={getFavoritePokemon}
+            pokemonData={pokemonData}
+            urlData={urlData}
           />
         ) : (
           <PokemonList
             pokemonList={pokemonList}
             isLoading={isLoading}
             pokemonDetail={pokemonDetail}
+            getFavoritePokemon={getFavoritePokemon}
+            urlData={urlData}
           />
         )}
       </div>
+
       <PokemonDetailsContainer
         pokemonData={pokemonData}
         searchData={searchData}
         handleSearch={handleSearch}
         getPokemonSearch={getPokemonSearch}
+        favoritePokemon={urlData}
+        getFavoritePokemon={getFavoritePokemon}
+        addFavoritePokemon={addFavoritePokemon}
+      />
+      <Trainer
+        favoritePokemonList={favoritePokemonList}
+        favePokemon={favePokemon}
+        setFavePokemon={setFavePokemon}
+        getFavPokemonList={getFavPokemonList}
+        pokemonDetail={pokemonDetail}
       />
     </>
   );
