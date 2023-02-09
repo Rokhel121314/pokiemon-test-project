@@ -64,7 +64,6 @@ function App() {
       console.log(error);
     }
   };
-  // console.log("pokemonList", favoritePokemonList);
 
   useEffect(() => {
     pokeGet();
@@ -103,7 +102,6 @@ function App() {
   }, [selectValue]);
 
   // function for changing view (list/grid)
-
   function setViewOption() {
     if (isGrid === true) {
       setIsGrid(false);
@@ -182,7 +180,6 @@ function App() {
     try {
       favoritePokemonList?.map(async (pokemon) => {
         const result = await Axios.get(pokemon.pokemonURL);
-        // console.log("pokemonList", pokemon.pokemonURL);
         setFavePokemon((pokemon) => {
           pokemon = [...pokemon, result.data];
           pokemon.sort((a, b) => (a.id > b.id ? 1 : -1));
@@ -223,7 +220,6 @@ function App() {
     try {
       createTeam?.map(async (pokemon) => {
         const result = await Axios.get(pokemon.pokemonURL);
-        // console.log("list", pokemonList);
         setPokemonTeam((pokemon) => {
           pokemon = [...pokemon, result.data];
           pokemon.sort((a, b) => (a.id > b.id ? 1 : -1));

@@ -1,5 +1,4 @@
-import Axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PokemonDetailsContainer from "./PokemonDetailsContainer";
 import PokemonGrid from "./PokemonGrid";
 import PokemonSearch from "./PokemonSearch";
@@ -14,7 +13,6 @@ function PokemonListContainer(props) {
     goNext,
     goPrevious,
     handleSearch,
-    searchInput,
     handleSelect,
     setViewOption,
     isGrid,
@@ -37,7 +35,6 @@ function PokemonListContainer(props) {
   } = props;
 
   const [searchData, setSearchData] = useState([]);
-  //   console.log("pokemonData", pokemonData);
 
   return (
     <>

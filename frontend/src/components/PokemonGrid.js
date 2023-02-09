@@ -7,7 +7,6 @@ function PokemonGrid({
   getFavoritePokemon,
   urlData,
 }) {
-  //   console.log("pokemonList", pokemonList);
   return (
     <>
       <div className="pokemonGridView col-12">
@@ -22,7 +21,6 @@ function PokemonGrid({
                 onClick={() => {
                   getFavoritePokemon(pokemon.name);
                   pokemonDetail(pokemon);
-                  // console.log("pokemon", pokemon.name);
                 }}
               >
                 <div className="pokeId">{pokemon.id}</div>

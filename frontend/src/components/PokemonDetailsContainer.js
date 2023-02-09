@@ -1,20 +1,13 @@
-import Axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import PokemonSearch from "./PokemonSearch";
 
 function PokemonDetailsContainer({
   pokemonData,
-  searchData,
   handleSearch,
   getPokemonSearch,
-  pokemonURL,
-  getFavoritePokemon,
   addFavoritePokemon,
   addToTeam,
 }) {
-  // console.log("pokemonData", pokemonData);
-  // console.log("pokemonURL", pokemonURL);
-
   const abilities = !pokemonData
     ? ""
     : pokemonData.abilities
@@ -25,13 +18,9 @@ function PokemonDetailsContainer({
     ? ""
     : pokemonData.stats?.map((stats) => stats.base_stat);
 
-  // console.log("statsValue", statsValue);
-
   const statsName = !pokemonData
     ? ""
     : pokemonData.stats?.map((stats) => stats.stat).map((st) => st.name);
-
-  // console.log("statsName", statsName);
 
   return (
     <>
@@ -57,8 +46,6 @@ function PokemonDetailsContainer({
                     })}
                   </div>
                 </div>
-                {/* <button>ADD TO TEAM</button>
-                <button>ADD TO FAVORITE</button> */}
               </div>
               <div className="pokemonDetail2 col-12">
                 <div className="statsHeader row">POKEMON STATS & SKILLS</div>

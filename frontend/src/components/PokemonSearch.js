@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function PokemonSearch({ handleSearch, getPokemonSearch }) {
-  // console.log("pokemonList", pokemonList);
-
   return (
     <div className="searchContainer col-12">
       <form className="formContainer row">
