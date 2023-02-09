@@ -10,14 +10,15 @@ function PokemonSearch({ handleSearch, getPokemonSearch }) {
           type="text"
           name="pokemonName"
           placeholder="search pokemon"
-          className="searchInput col-5"
+          className="searchInput col-7"
           onChange={handleSearch}
+          required={true}
         />
         <button
           type="button"
           name="searchBtn"
           onClick={getPokemonSearch}
-          className="searchBtn col-5"
+          className="searchBtn col-3"
         >
           SEARCH
         </button>

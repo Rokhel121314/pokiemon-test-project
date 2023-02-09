@@ -22,7 +22,7 @@ function PokemonGrid({
                 onClick={() => {
                   getFavoritePokemon(pokemon.name);
                   pokemonDetail(pokemon);
-                  console.log("pokemon", pokemon.name);
+                  // console.log("pokemon", pokemon.name);
                 }}
               >
                 <div className="pokeId">{pokemon.id}</div>

@@ -5,6 +5,7 @@ const { urlencoded } = require("express");
 const connectDB = require("./config/connectDB");
 const FavoritePokemon = require("./models/pokemonModel");
 const pokemonRoutes = require("./routes/pokemonRoutes");
+const teamRoutes = require("./routes/teamRoutes");
 const bodyParser = require("body-parser");
 const { options } = require("./routes/pokemonRoutes");
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 // app.use(bodyParser.urlencoded({ extended: true }));
+app.use(teamRoutes);
 app.use(pokemonRoutes);
 
 const PORT = process.env.PORT || 3001;

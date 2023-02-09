@@ -10,6 +10,7 @@ function PokemonDetailsContainer({
   pokemonURL,
   getFavoritePokemon,
   addFavoritePokemon,
+  addToTeam,
 }) {
   // console.log("pokemonData", pokemonData);
   // console.log("pokemonURL", pokemonURL);
@@ -89,7 +90,10 @@ function PokemonDetailsContainer({
                 >
                   + FAVORITE
                 </button>
-                <button className="addtoTeamBtn"> + TEAM</button>
+                <button className="addtoTeamBtn" onClick={addToTeam}>
+                  {" "}
+                  + TEAM
+                </button>
               </div>
             </div>
           )}

@@ -85,6 +85,22 @@ body {
   width: 120px;
   height: 35px;
   border-radius: 17px;
+  font-weight: bolder;
+}
+
+.navBtn:hover {
+  cursor: pointer;
+  color: white;
+  background: black;
+  border: 1px solid white;
+  font-weight: bolder;
+}
+
+.navBtn:active {
+  color: black;
+  background: white;
+  border: 1px solid white;
+  transition: 0.3s;
 }
 
 .pokeSort {
@@ -106,6 +122,17 @@ body {
 
 .viewBtn:hover {
   cursor: pointer;
+  color: white;
+  background: black;
+  border: 1px solid white;
+  font-weight: bolder;
+}
+
+.viewBtn:active {
+  color: black;
+  background: white;
+  border: 1px solid white;
+  transition: 0.1s;
 }
 
 .pokemonGridView {
@@ -134,6 +161,12 @@ body {
 
 .pokemonGrid:hover {
   cursor: pointer;
+  background: rgb(68, 68, 68);
+}
+
+.pokemonGrid:active {
+  background: rgb(0, 0, 0);
+  transition: 0.1s;
 }
 
 .pokeId {
@@ -167,12 +200,17 @@ body {
   color: white;
   border: 1px solid white;
   border-radius: 10px;
-
   margin: 0.5rem auto;
 }
 
 .pokemonListBtn:hover {
   cursor: pointer;
+  background: rgb(105, 101, 101);
+}
+.pokemonListBtn:active {
+  background: rgb(0, 0, 0);
+  transition: 0.1s;
+  color: white;
 }
 
 .searchInput {
@@ -303,12 +341,33 @@ body {
 }
 .addtoFavoriteBtn:hover {
   cursor: pointer;
+  color: white;
+  background: black;
+  border: 1px solid white;
+}
+.addtoFavoriteBtn:active {
+  background: white;
+  transition: 0.1s;
+  color: black;
 }
 
 .addtoTeamBtn {
   width: 100px;
   height: 25px;
   border-radius: 12.5px;
+}
+
+.addtoTeamBtn:hover {
+  cursor: pointer;
+  color: white;
+  background: black;
+  border: 1px solid white;
+}
+
+.addtoTeamBtn:active {
+  background: white;
+  transition: 0.1s;
+  color: black;
 }
 .searchContainer {
   text-align: center;
@@ -330,6 +389,15 @@ body {
 }
 .searchBtn:hover {
   cursor: pointer;
+  color: white;
+  background: black;
+  border: 1px solid white;
+}
+
+.searchBtn:active {
+  background: white;
+  transition: 0.1s;
+  color: black;
 }
 
 .trainerContainer {
@@ -338,39 +406,106 @@ body {
   background-color: rgb(50, 51, 51);
 }
 .trainerName {
-  height: 10vh;
+  height: 6vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2rem;
+  font-weight: bolder;
 }
 .pokemonTeamContainer {
-  height: 40vh;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.teamContainer {
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+}
+
+.teamImg {
+  width: 60px;
 }
 
 .teamTitle {
   height: 5vh;
   font-size: 1.2rem;
-  margin-left: 1rem;
-  text-align: start !important;
+  font-weight: bolder;
+  margin-top: 1rem;
+  text-align: center !important;
 }
 .favoritePokemonContainer {
-  height: 50vh;
+  height: 35vh;
 }
 
 .pokemonContainer {
   display: flex;
   align-items: center;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin-top: 5px;
 }
 
 .pokemonContainer:hover {
   cursor: pointer;
+  background: rgb(0, 0, 0);
 }
 
 .faveListContainer {
-  height: 45vh;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow-y: auto;
 }
-.faveListContainer > div > img {
+.faveListContainer > div > div > img {
   height: 50px;
+}
+
+.favName {
+  text-align: start;
+  font-weight: bolder;
+}
+
+.saveTeamContainer {
+  height: 10vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.saveTeamBtn {
+  background: none;
+  color: white;
+  border: 1px solid white;
+  padding: 15px 5px;
+  border-radius: 5px;
+}
+.saveTeamBtn:hover {
+  cursor: pointer;
+  background: white;
+  color: black;
+}
+
+.saveTeamBtn:active {
+  background: rgb(0, 0, 0);
+  color: white;
+  transition: 0.1s;
+}
+.sprites {
+  height: 60px;
+  width: 60px;
+}
+
+.displayTeamContainer {
+  /* height: 40vh; */
+  /* width: ; */
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.teamImg {
+  border-bottom: 1px solid white;
 }

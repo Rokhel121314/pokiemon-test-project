@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import PokemonDetailsContainer from "./components/PokemonDetailsContainer";
 import PokemonListContainer from "./components/PokemonListContainer";
 import style from "./css/style.css";
 import Axios from "axios";
@@ -22,18 +21,18 @@ function App() {
   const [pokemonURL, setPokemonURL] = useState("");
   const [favoritePokemonList, setFavoritePokemonList] = useState([]);
   const [favePokemon, setFavePokemon] = useState([]);
+  const [createTeam, setCreateTeam] = useState([]);
+  const [pokemonTeam, setPokemonTeam] = useState([]);
+  const [teamUrl, setTeamUrl] = useState({});
+  const [eachTeamURLS, setEachTeamURLS] = useState([]);
+  const [teamData, setTeamData] = useState([]);
+  const [dataSet, setDataSet] = useState([]);
 
-  // console.log("pokemonData", pokemonData.id);
-  // console.log(
-  //   "favoritePokemon",
-  //   !favePokemon ? "" : favePokemon?.map((pokemon) => pokemon.id)
-  // );
   const pokemonDataID = pokemonData.id;
-  console.log("pokemonDataID", pokemonDataID);
+
   const favePokemonId = !favePokemon
     ? ""
     : favePokemon?.map((pokemon) => pokemon.id);
-  console.log("favePokemonId", favePokemonId);
 
   // getting pokemon list URL
   const pokeGet = async () => {
@@ -54,7 +53,7 @@ function App() {
     try {
       res?.map(async (pokemon) => {
         const result = await Axios.get(pokemon.url);
-        // console.log("list", pokemonList);
+
         setPokemonList((pokemon) => {
           pokemon = [...pokemon, result.data];
           pokemon.sort((a, b) => (a.id > b.id ? 1 : -1));
@@ -65,6 +64,7 @@ function App() {
       console.log(error);
     }
   };
+  // console.log("pokemonList", favoritePokemonList);
 
   useEffect(() => {
     pokeGet();
@@ -121,9 +121,16 @@ function App() {
 
   // getting pokemon detail on search
   const getPokemonSearch = () => {
-    Axios.get(`https://pokeapi.co/api/v2/pokemon/${searchInput}`).then(
-      (response) => (!response.data ? "" : setPokemonData(response.data))
-    );
+    if (searchInput.length === 0) {
+      window.alert("please input pokemon name!");
+    } else {
+      Axios.get(`https://pokeapi.co/api/v2/pokemon/${searchInput}`).then(
+        (response) => (
+          !response.data ? "" : setPokemonData(response.data),
+          getFavoritePokemon(response.data.name)
+        )
+      );
+    }
   };
 
   // getting url of favorite pokemon
@@ -131,17 +138,9 @@ function App() {
     setPokemonURL(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
   }
 
-  // console.log(
-  //   "compare",
-  //   !favePokemonId ? "" : favePokemonId.filter((id) => id == pokemonData.id)
-  // );
-
   // adding favorite pokemon in DB
   const addFavoritePokemon = async (e) => {
     e.preventDefault();
-    // if (pokemonURL === "") {
-    //   return console.log("cant be empty");
-    // }
     if (favePokemonId.includes(pokemonDataID) === true) {
       console.log("already on the list");
       window.alert("already on the list");
@@ -183,7 +182,7 @@ function App() {
     try {
       favoritePokemonList?.map(async (pokemon) => {
         const result = await Axios.get(pokemon.pokemonURL);
-        // console.log("list", pokemonList);
+        // console.log("pokemonList", pokemon.pokemonURL);
         setFavePokemon((pokemon) => {
           pokemon = [...pokemon, result.data];
           pokemon.sort((a, b) => (a.id > b.id ? 1 : -1));
@@ -199,6 +198,132 @@ function App() {
     setFavePokemon("");
     getFavPokemonList();
   }, [favoritePokemonList]);
+
+  // CREATING TEAM
+
+  const teamList = createTeam.map((p) => {
+    return p.pokemonURL;
+  });
+
+  function addToTeam() {
+    console.log("compare", teamList.includes(pokemonURL), pokemonURL);
+
+    if (teamList.includes(pokemonURL) === true) {
+      window.alert("already in your team");
+    } else {
+      if (createTeam.length < 4) {
+        setCreateTeam([...createTeam, { pokemonURL }]);
+      } else {
+        window.alert("you already have 4 pokemon on the team");
+      }
+    }
+  }
+
+  const getPokemonTeamList = async (res, err) => {
+    try {
+      createTeam?.map(async (pokemon) => {
+        const result = await Axios.get(pokemon.pokemonURL);
+        // console.log("list", pokemonList);
+        setPokemonTeam((pokemon) => {
+          pokemon = [...pokemon, result.data];
+          pokemon.sort((a, b) => (a.id > b.id ? 1 : -1));
+          return pokemon;
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setPokemonTeam("");
+    getPokemonTeamList();
+  }, [createTeam.length]);
+
+  // adding favorite pokemon in DB
+  const savePokemonTeam = async (e) => {
+    e.preventDefault();
+    if (createTeam.length < 4) {
+      window.alert(`add ${4 - createTeam.length} more pokemon`);
+    } else if (createTeam.length === 4) {
+      try {
+        await Axios.post(`${URL}/api/team`, {
+          createTeam: { teamURL: createTeam },
+        });
+        console.log("added to team");
+        window.location.reload();
+      } catch (error) {
+        console.log(error.message);
+        console.log("createTeam", createTeam);
+      }
+    }
+  };
+
+  // getting teamdata from DB
+  const getPokemonTeam = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await Axios.get(`${URL}/api/team`);
+      setTeamUrl(data.map((pokemon) => pokemon.teamURL));
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  // getting team URL
+  const getPokemonTeamURL = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await Axios.get(`${URL}/api/team`);
+      const dataArray = data.map((url) => url.teamURL);
+      const urlArray = dataArray.map((data) =>
+        data.map((d) => {
+          return d.pokemonURL;
+        })
+      );
+      setEachTeamURLS(urlArray);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error.message);
+      console.log(error);
+      setIsLoading(false);
+    }
+  };
+
+  // getting pokemonlist from URL
+  const getTeamData = async () => {
+    try {
+      let urls = [];
+
+      for (let i = 0; i < eachTeamURLS.length; i++) {
+        const array = eachTeamURLS[i];
+        for (let j = 0; j < array.length; j++) {
+          const urls = array[j];
+          // console.log("urls", urls);
+          const result = await Axios.get(urls);
+          setTeamData((pokemon) => {
+            pokemon = [...pokemon, result.data];
+            return pokemon;
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getTeamData();
+  }, [eachTeamURLS.length]);
+
+  useEffect(() => {
+    getPokemonTeam();
+    getPokemonTeamURL();
+  }, []);
+
   return (
     <>
       <PokemonListContainer
@@ -220,6 +345,11 @@ function App() {
         addFavoritePokemon={addFavoritePokemon}
         favePokemon={favePokemon}
         getFavPokemonList={getFavPokemonList}
+        addToTeam={addToTeam}
+        pokemonTeam={pokemonTeam}
+        savePokemonTeam={savePokemonTeam}
+        teamUrl={teamUrl}
+        teamData={teamData}
       />
     </>
   );

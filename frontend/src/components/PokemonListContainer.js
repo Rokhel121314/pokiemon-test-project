@@ -29,6 +29,11 @@ function PokemonListContainer(props) {
     setFavePokemon,
     favePokemon,
     getFavPokemonList,
+    addToTeam,
+    pokemonTeam,
+    savePokemonTeam,
+    teamUrl,
+    teamData,
   } = props;
 
   const [searchData, setSearchData] = useState([]);
@@ -71,6 +76,7 @@ function PokemonListContainer(props) {
             isLoading={isLoading}
             pokemonDetail={pokemonDetail}
             getFavoritePokemon={getFavoritePokemon}
+            pokemonData={pokemonData}
             urlData={urlData}
           />
         )}
@@ -84,6 +90,7 @@ function PokemonListContainer(props) {
         favoritePokemon={urlData}
         getFavoritePokemon={getFavoritePokemon}
         addFavoritePokemon={addFavoritePokemon}
+        addToTeam={addToTeam}
       />
       <Trainer
         favoritePokemonList={favoritePokemonList}
@@ -91,6 +98,12 @@ function PokemonListContainer(props) {
         setFavePokemon={setFavePokemon}
         getFavPokemonList={getFavPokemonList}
         pokemonDetail={pokemonDetail}
+        pokemonTeam={pokemonTeam}
+        pokemonData={pokemonData}
+        getFavoritePokemon={getFavoritePokemon}
+        savePokemonTeam={savePokemonTeam}
+        teamUrl={teamUrl}
+        teamData={teamData}
       />
     </>
   );
